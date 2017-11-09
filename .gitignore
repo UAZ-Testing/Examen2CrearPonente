@@ -49,7 +49,7 @@ downloads/
 eggs/
 .eggs/
 lib/
-!**/static/lib
+!**/static/lib/
 lib64/
 parts/
 sdist/
