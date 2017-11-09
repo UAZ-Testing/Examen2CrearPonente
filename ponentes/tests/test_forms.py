@@ -30,10 +30,3 @@ class PonenteFormTest(TestCase):
         self.assertEqual(form.errors['nombre'], [NOMBRE_REQUIRED_ERROR])
         self.assertEqual(form.errors['primer_apellido'],
                          [PRIMER_APELLIDO_REQUIRED_ERROR])
-
-        # def test_form_validation_for_blank_items(self):
-        #     form = ItemForm(data={'text': ''})
-        #     self.assertFalse(form.is_valid())
-        #     self.assertEqual(
-        #         form.errors['text'],
-        #         [EMPTY_ITEM_ERROR]
