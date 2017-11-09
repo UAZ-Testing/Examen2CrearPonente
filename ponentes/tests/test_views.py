@@ -10,6 +10,11 @@ class PonentesPageTest(TestCase):
         response = self.client.get('/')
         self.assertTemplateUsed(response, 'ponentes.html')
 
+    def test_display_new_ponente_in_list(self):
+        ponente = Ponente.objects.create(nombre='Mario', primer_apellido='Díaz')
+        response = self.client.get('/')
+        self.assertContains(response, ponente.nombre)
+
 
 class PonentePageTest(TestCase):
     def test_uses_ponentes_template(self):
