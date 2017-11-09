@@ -9,5 +9,9 @@ class Ponente(models.Model):
     segundo_apellido = models.CharField(max_length=50, null=True, blank=True)
 
     def __str__(self):
-        print('%s %s %s' % (
-        self.nombre, self.primer_apellido, self.segundo_apellido))
+        nombre_completo = '%s %s' % (self.nombre, self.primer_apellido)
+
+        if self.segundo_apellido is not None:
+            nombre_completo = ' %s' % (self.segundo_apellido)
+
+        return nombre_completo

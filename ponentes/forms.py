@@ -32,7 +32,3 @@ class PonenteForm(forms.models.ModelForm):
             'nombre': {'required': NOMBRE_REQUIRED_ERROR},
             'primer_apellido': {'required': PRIMER_APELLIDO_REQUIRED_ERROR},
         }
-
-    def save(self, ponente):
-        self.instance.list = ponente
-        return super().save()
