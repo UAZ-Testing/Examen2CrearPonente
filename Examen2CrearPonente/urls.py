@@ -15,7 +15,9 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from ponentes import views as ponentes_views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^$', ponentes_views.mostrar_ponentes),
 ]
