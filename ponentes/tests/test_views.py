@@ -52,3 +52,7 @@ class PonentePageTest(TestCase):
         })
         self.assertContains(response, escape(NOMBRE_REQUIRED_ERROR))
         self.assertContains(response, escape(PRIMER_APELLIDO_REQUIRED_ERROR))
+
+    def test_for_invalid_input_passes_form_to_template(self):
+        response = self.client.post('/new', data={'nombre': ''})
+        self.assertIsInstance(response.context['form'], PonenteForm)
