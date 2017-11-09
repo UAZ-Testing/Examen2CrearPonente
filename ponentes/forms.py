@@ -5,10 +5,12 @@ NOMBRE_PLACEHOLDER = 'Ingresa el nombre'
 PRIMER_APELLIDO_PLACEHOLDER = 'Ingresa el primer apellido'
 SEGUNDO_APELLIDO_PLACEHOLDER = 'Ingresa el segundo apellido'
 NOMBRE_REQUIRED_ERROR = 'El nombre es requerido'
-PRIMER_APELLIDO_REQUIRED_ERROR = 'El nombre es requerido'
+PRIMER_APELLIDO_REQUIRED_ERROR = 'El primer apellido es requerido'
 
 
 class PonenteForm(forms.models.ModelForm):
+    use_required_attribute = False
+
     class Meta:
         model = Ponente
         fields = ('nombre', 'primer_apellido', 'segundo_apellido')

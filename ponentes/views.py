@@ -14,11 +14,14 @@ def mostrar_ponentes(request):
 
 
 def insertar_ponente(request):
-    form = PonenteForm(data=request.POST)
+    if request.method == 'POST':
+        form = PonenteForm(data=request.POST)
 
-    if form.is_valid():
-        ponente = Ponente.objects.create()
-        form.save(ponente)
-        return redirect('mostrar_ponentes')
+        if form.is_valid():
+            form.save()
+            return redirect('mostrar_ponentes')
+        else:
+            return render(request, 'ponente.html', {"form": form})
     else:
-        return render(request, 'ponentes.html', {"form": form})
+        form = PonenteForm()
+        return render(request, 'ponente.html', {"form": form})
