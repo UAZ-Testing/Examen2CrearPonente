@@ -19,5 +19,6 @@ from ponentes import views as ponentes_views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', ponentes_views.mostrar_ponentes),
+    url(r'^$', ponentes_views.mostrar_ponentes, name='mostrar_ponentes'),
+    url(r'^new$', ponentes_views.insertar_ponente, name='insertar_ponente'),
 ]
