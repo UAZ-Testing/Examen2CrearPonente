@@ -56,3 +56,7 @@ class PonentePageTest(TestCase):
     def test_for_invalid_input_passes_form_to_template(self):
         response = self.client.post('/new', data={'nombre': ''})
         self.assertIsInstance(response.context['form'], PonenteForm)
+
+    def test_invalid_ponentes_arent_saved(self):
+        self.client.post('/new', data={'nombre': ''})
+        self.assertEqual(Ponente.objects.count(), 0)
