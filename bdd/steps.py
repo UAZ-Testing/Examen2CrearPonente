@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import time
 from lettuce import step, world
 from selenium import webdriver
 from selenium.common.exceptions import WebDriverException
@@ -10,6 +11,7 @@ reload(sys)
 sys.setdefaultencoding('utf8')
 
 INFO_PONENTE_CREADO = 'Ponente creado con éxito'
+ERROR_NOMBRE_REQUERIDO = 'El nombre es requerido'
 
 
 @step(u'Given se muestra la lista de ponentes')
@@ -126,3 +128,19 @@ def and_se_muestra_el_ponente_creado_en_la_lista_de_ponentes(step):
     if not ponente_encontrado:
         assert False, 'No se encontró el ponente %s %s' % (
             world.nombre, world.ap_pat)
+
+
+@step(u'Then se muestra el error "([^"]*)"')
+def then_se_muestra_el_error_group1(step, group1):
+    time.sleep(1)
+    error_box = world.browser.find_element_by_css_selector('.alert-danger')
+    errors_text = error_box.get_attribute('innerText')
+
+    assert ERROR_NOMBRE_REQUERIDO in errors_text, \
+        'Se esperaba el error %s y se obtuvo %s' % (
+            ERROR_NOMBRE_REQUERIDO, errors_text)
+
+
+@step(u'And se finaliza la aplicación')
+def and_se_finaliza_la_aplicacion(step):
+    world.browser.quit()
