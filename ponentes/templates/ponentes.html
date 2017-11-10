@@ -12,7 +12,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-6 col-md-offset-3">
+        <div class="col-md-8 col-md-offset-2">
 
             <div class="jumbotron">
                 <div class="text-center">
@@ -20,28 +20,41 @@
                 </div>
             </div>
 
-            <table class="table">
+            {% if info_message %}
+                <div class="alert alert-success">
+                    {{ info_message }}
+                </div>
+            {% endif %}
+
+            <table id="tablaPonentes" class="table">
                 <tr>
                     <th>Nombre</th>
                     <th>Primer Apellido</th>
                     <th>Segundo Apellido</th>
+                    <th>Acciones</th>
                 </tr>
 
                 {% for ponente in ponentes %}
-                    <tr>
-                        <td>{{ ponente.nombre }}</td>
-                        <td>{{ ponente.primer_apellido }}</td>
-                        <td>
+                    <tr class="row-ponente">
+                        <td class="nom-ponente">{{ ponente.nombre }}</td>
+                        <td class="pap-ponente">{{ ponente.primer_apellido }}</td>
+                        <td class="sap-ponente">
                             {% if ponente.segundo_apellido %}
                                 {{ ponente.segundo_apellido }}
                             {% endif %}
+                        </td>
+                        <td>
+                            <a class="btn btn-warning glyphicon
+                            glyphicon-pencil btn-editar"></a>
+                            <a class="btn btn-danger glyphicon
+                            glyphicon-erase btn-eliminar"></a>
                         </td>
                     </tr>
                 {% endfor %}
 
             </table>
 
-            <a href="{% url 'insertar_ponente' %}"
+            <a id="btnNuevoPonente" href="{% url 'insertar_ponente' %}"
                class="btn btn-block btn-primary">
                 Nuevo
             </a>
